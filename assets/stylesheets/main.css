@@ -1,0 +1,44 @@
+/* --------------------------------------------------------------------------------------
++
++   SATURIZED - The Interactive Agency
++
++   = Dropdownized
++
+-------------------------------------------------------------------------------------- */
+
+/*
+= IMPORTING STUFF AND SETTING DEFAULT STYLES
+-------------------------------------------------------------------------------------- */
+@import url("reset.css");
+
+/*
+= COMMON ---------------- */
+form {
+    width: 300px;
+    margin: 25em auto;
+}
+.ui-dropdownized {
+    font-size: 11px;
+    line-height: 40px;
+    height: 40px;
+    font-weight: bold;
+    width: 200px;
+    display: block;
+    background: #e0e0e0;
+}
+.ui-dropdownized div {
+    width: 200px;
+    text-indent: 15px;
+    display: block;
+    position: absolute;
+    line-height: 40px;
+    height: 40px;
+}
+.ui-dropdownized select {
+    font-size: 11px;
+    width: 200px;
+    height: 40px;
+}
+.ui-dropdownized.hover {
+    background: #f0f0f0;
+}

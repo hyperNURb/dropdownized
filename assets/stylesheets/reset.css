@@ -1,0 +1,100 @@
+/* --------------------------------------------------------------------------------------
++
++   SATURIZED - The Interactive Agency
++
++   = Resets and global styles
++
++   Thanks:
++      - Eric Meyer (http://meyerweb.com/eric/tools/css/reset)
++      - Wilson Miner (http://www.alistapart.com/articles/settingtypeontheweb)
++
+-------------------------------------------------------------------------------------- */
+
+
+/*
++  GLOBAL RESETS - DO NOT MODIFY THESE
+---------------------------------------------------------------------------- */
+html, body, div, span, applet, object, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; border: 0; outline: 0;}
+:focus{outline: 0;}
+html{ overflow-y:scroll;}
+body{ line-height: 1; color: #000; background: #fff;}
+ol, ul{ list-style: none;}
+table{ border-collapse: separate; border-spacing: 0;}
+caption, th, td{ text-align: left; font-weight: normal;}
+blockquote:before, blockquote:after,q:before, q:after {content: " ";}
+blockquote, q{quotes: "" "";}
+textarea{overflow:auto; resize: none;}
+
+
+/*
++  BASIC TYPOGRAPY
+---------------------------------------------------------------------------- */
+* html{ font-size: 62.5%; }
+    * html body{ font-size: 1.4em; }
+html > body{font-size: 12px;}
+body{ font: normal 12px/20px Helvetica, Arial, sans-serif; }
+    input, textarea{ font: normal 12px/18px Helvetica, Arial, sans-serif;}
+strong{font-weight: bold;}
+em{font-style: italic;}
+small{font-size: 11px;}
+p, address, .adr{margin-bottom: 18px;}
+h1,h2,h3,h4,h5,h6{ font-weight: bold; font-family: Hevetica, Arial, sans-serif !important;}
+h2{ font-size: 26px; line-height: 36px; margin-bottom: 18px;}
+h3{ font-size: 18px; line-height: 18px; margin-bottom: 18px;}
+h4{ font-size: 14px; line-height: 18px;}
+h5, h6{ font-size: 12px; line-height: 18px;}
+dl{ margin-top: 18px; margin-bottom: 18px;}
+dl dt{ font-weight: bold;}
+table{margin-bottom:0px;}
+blockquote{ margin: 18px 0; padding: 17px 18px 0 17px; font-style: italic;}
+pre,code,tt { font: 0.95em/1.5em Courier, Monaco, "lucida console", monospace;}
+abbr, acronym{ border-bottom: 1px dotted #d0d0d0; cursor: help;}
+a img{ border: none;}
+
+
+/*
++  BASIC STYLES
+---------------------------------------------------------------------------- */
+.left{float: left;}
+.right{float: right;}
+.first{ margin-left:0 !important;}
+.last{ margin-right:0 !important;}
+.hide{display: none;}
+.visible{ display: block;}
+.empty{visibility: hidden;}
+
+/* Usage <div class="hr"><hr /></div> */
+.hr{ clear: both; margin: 18px 0; background: transparent; border: none; border-top: 1px solid #bbb;}
+    hr{ visibility: hidden; font-size: 0; line-height: 0; height: 0; border: none;}
+
+/* Usage <span class="button"><button>title</button></span> */
+.button{ padding: 0px 0 0px 24px; margin: 0 !important; background: url() bottom left no-repeat; line-height: 38px; height: 38px; display: inline-block;}
+    .button button{ background: url() bottom right no-repeat; font-weight: bold; color: #fff; font-size: 13px; border: none; margin: 0 0 0 -16px; padding: 0px 24px 0px 16px; cursor: pointer; white-space: nowrap; display: inline-block; height: 38px; line-height: 38px;}
+    span.button:hover{ }
+    .button button:hover{ }
+    span.button:active{ }
+    .button button:active{ }
+
+.accent, strong.accent, span.accent, em.accent{ background: #ffffbf !important; color: inherit; padding: .25em; font-weight: bold;}
+div.accent, p.accent{padding: 1.5em;}
+.amp{ font: italic 1.1em/10% "Warnock Pro", "Goudy Old Style", "Palatino", "Book Antiqua", serif;}
+
+.clearfix:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
+
+/* Layout helpers
+----------------------------------*/
+.ui-helper-hidden { display: none; }
+.ui-helper-hidden-accessible { position: absolute; left: -99999999px; }
+.ui-helper-reset { margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none; }
+.ui-helper-clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.ui-helper-clearfix { display: inline-block; }
+/* required comment for clearfix to work in Opera \*/
+* html .ui-helper-clearfix { height:1%; }
+.ui-helper-clearfix { display:block; }
+/* end clearfix */
+.ui-helper-zfix { width: 100%; height: 100%; top: 0; left: 0; position: absolute; opacity: 0; filter:Alpha(Opacity=0); }
+.ui-tabs-panel{ display: block !important; }
+.ui-tabs-hide { display: none !important; }

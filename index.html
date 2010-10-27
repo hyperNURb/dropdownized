@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Dropdownized</title>
+
+    <link type="text/css" rel="stylesheet" href="assets/stylesheets/main.css" />
+
+    <script src="assets/javascript/jquery/jquery-1.4.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="assets/javascript/jquery/jquery.dropdownized.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('select').dropdownized();
+        });
+    </script>
+</head>
+<body>
+
+<form action="">
+    <fieldset id="" class="">
+            <select name="bug_browser" id="bug-browser">
+                <option value="" selected="selected">Izaberite</option>
+                <optgroup label="Firefox">
+                    <option value="Firefox 3">Firefox 3</option>
+                    <option value="Firefox 3.5">Firefox 3.5</option>
+
+                    <option value="Firefox 4">Firefox 4</option>
+                </optgroup>
+                <optgroup label="Safari">
+                    <option value="Safari 3">Safari 3</option>
+                    <option value="Safari 4">Safari 4</option>
+                    <option value="Safari 5">Safari 5</option>
+                </optgroup>
+
+                <optgroup label="Google Chrome">
+                    <option value="Google Chrome 4">Google Chrome 4</option>
+                    <option value="Google Chrome 5">Google Chrome 5</option>
+                </optgroup>
+                <optgroup label="Internet Explorer">
+                    <option value="Internet Explorer 7">Internet Explorer 7</option>
+                    <option value="Internet Explorer 8">Internet Explorer 8</option>
+
+                    <option value="Internet Explorer 9">Internet Explorer 9</option>
+                </optgroup>
+                <optgroup label="Opera">
+                    <option value="Opera 9">Opera 9</option>
+                    <option value="Opera 10">Opera 10</option>
+                </optgroup>
+            </select>
+    </fieldset>
+</form>
+
+</body>
+</html>
