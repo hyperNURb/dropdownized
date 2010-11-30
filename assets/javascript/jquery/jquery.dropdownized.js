@@ -24,7 +24,8 @@
             $(this).wrap('<div class="ui-dropdownized" />').before('<div>Hello</div>');
             $(this).parent().css({
                 cursor: 'pointer',
-                position: 'relative'
+                position: 'relative',
+                zIndex: 1
             });
 
             // Getting parent div sizes so select box would be whole selectable
