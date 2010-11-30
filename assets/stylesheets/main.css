@@ -37,6 +37,7 @@ form {
     position: absolute;
     line-height: 38px;
     height: 38px;
+    z-index: 0;
 }
 .ui-dropdownized select {
     font-size: 11px;
