@@ -15,7 +15,6 @@
 
     $.fn.dropdownized = function(options) {
         var opts = $.extend({}, $.fn.dropdownized.defaults, options);
-        var dropdownized = $(this);
 
         return this.each(function() {
             // Hides select field
@@ -32,7 +31,7 @@
             var dropdownizerHolderHeight = $(this).parent().height();
             var dropdownizerHolderWidth = $(this).parent().width();
 
-            normalDropDrown(dropdownized, dropdownizerHolderWidth, dropdownizerHolderHeight, opts.hover);
+            normalDropDrown(this, dropdownizerHolderWidth, dropdownizerHolderHeight, opts.hover);
         });
     };
 
