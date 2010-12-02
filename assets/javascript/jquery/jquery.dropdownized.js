@@ -16,12 +16,12 @@
     $.fn.dropdownized = function(options) {
         var opts = $.extend({}, $.fn.dropdownized.defaults, options);
 
-        return this.each(function() {
+        return this.each(function(i) {
             // Hides select field
             $(this).attr('style', ' -moz-opacity:0; filter:alpha(opacity=0); opacity:0;');
 
             // HTML
-            $(this).wrap('<div class="ui-dropdownized" />').before('<div>Hello</div>');
+            $(this).wrap('<div id="dropdownized-'+i+'" class="ui-dropdownized" />').before('<div>Dropdownized initialized</div>');
             $(this).parent().css({
                 cursor: 'pointer',
                 position: 'relative',
