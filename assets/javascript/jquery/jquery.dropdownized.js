@@ -32,11 +32,11 @@
             var dropdownizerHolderHeight = $(this).parent().height();
             var dropdownizerHolderWidth = $(this).parent().width();
 
-            normalDropDrown(this, dropdownizerHolderWidth, dropdownizerHolderHeight, opts.hover);
+            normalDropDrown(this, i, dropdownizerHolderWidth, dropdownizerHolderHeight, opts);
         });
     };
 
-    function normalDropDrown(e, elWidth, elHeight, hover){
+    function normalDropDrown(e, uID, eWidth, eHeight, opts){
         // Setting select CSS properties
         $(e).css({
             display: 'inline',
@@ -45,24 +45,33 @@
             float: 'left',
             left: 0,
             top: 0,
-            height: elHeight,
-            width: elWidth,
+            height: eHeight,
+            width: eWidth,
             margin: 0,
             padding: 0,
             backgroundColor: 'transparent',
             zIndex: '5'
         });
 
+        // Get initial value of dropdown
         $(e).each( function(){
-            $(this).siblings('div').html($(this).find(":selected").text());
+            var dropdownValue = $(this).find(":selected").text();
+            if($.trim(dropdownValue).length != ""){
+                $(this).siblings("div").html(dropdownValue);
+            } else {
+                $(this).siblings("div").html(opts.noValue);
+            }
         });
-         $(e).change(function() {
+
+        // Gets value of selected option
+        $(e).change(function() {
              $(this).siblings("div").html($(this).find(":selected").text());
         });
 
+        // Adds hover class (mostly to satisfy IE users)
         $(e).parent().hover(
-            function() { $(this).addClass(hover);},
-            function() { $(this).removeClass(hover);}
+            function() { $(this).addClass(opts.hover);},
+            function() { $(this).removeClass(opts.hover);}
         );
     };
 
