@@ -28,9 +28,26 @@
                 zIndex: 1
             });
 
-            // Getting parent div sizes so select box would be whole selectable
-            var dropdownizerHolderHeight = $(this).parent().height();
-            var dropdownizerHolderWidth = $(this).parent().width();
+            // Getting options and parent sizes
+            if(opts.fixed === true){
+                // Parent elements needs to have specific
+                var dropdownizerHolderHeight = $(this).parent().height();
+                var dropdownizerHolderWidth = $(this).parent().width();
+            } else {
+                var dropdownizerHolderHeight = $(this).height();
+                var dropdownizerHolderWidth = $(this).width();
+
+                $('#dropdownized-'+i).width(dropdownizerHolderWidth).height(dropdownizerHolderHeight);
+                $('#dropdownized-'+i).find('div').css({
+                    top: 0,
+                    left: 0,
+                    display: 'block',
+                    position: 'absolute',
+                    lineHeight: dropdownizerHolderHeight+'px',
+                    width: dropdownizerHolderWidth,
+                    height: dropdownizerHolderHeight
+                });
+            }
 
             normalDropDrown(this, i, dropdownizerHolderWidth, dropdownizerHolderHeight, opts);
         });
@@ -77,7 +94,8 @@
 
     // Default options
     $.fn.dropdownized.defaults = {
-        hover: 'hover',
-        noValue: 'Select...'
+        fixed: true,            // Sets script to be fluid or fixed
+        hover: 'hover',         // Name of the hover class
+        noValue: 'Select...'    // Default placeholder text
     };
 })(jQuery);
