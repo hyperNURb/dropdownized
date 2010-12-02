@@ -68,6 +68,7 @@
 
     // Default options
     $.fn.dropdownized.defaults = {
-      hover: 'hover'
+        hover: 'hover',
+        noValue: 'Select...'
     };
 })(jQuery);
