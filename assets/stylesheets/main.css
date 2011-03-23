@@ -46,3 +46,34 @@ form {
     background-position: bottom left;
     color: #000;
 }
+.ui-dropdownized ul{
+    position: absolute;
+    display: none;
+    z-index: 999;
+    width: 250px;
+    background: #000;
+    padding: 5px 0;
+    box-shadow: 0 0 5px #000;
+    -moz-box-shadow: 0 0 5px #000;
+    -webkit-box-shadow: 0 0 5px #000;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    color: #fff;
+}
+.ui-dropdownized ul a{
+    padding: 0 15px;
+    height: 28px;
+    line-height: 28px;
+    display: block;
+    font-size: 11px;
+    color: #999;
+    text-decoration: none;
+}
+.ui-dropdownized ul li.selected a{
+    background: #333;
+    color: #fff;
+}
+.ui-dropdownized ul a:hover{
+    color: #fff;
+}

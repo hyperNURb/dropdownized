@@ -7,95 +7,121 @@
 * Uses the same license as jQuery, see:
 * http://jquery.org/license
 *
-* @version 0.1
+* @version 0.3
 */
 ;(function($) {
     var options = {
     };
 
+    var methods = {
+        init    :       function(elem, i) {
+                            elem.data({'drpdwnInit': true})
+                                .attr('style', ' -moz-opacity:0; filter:alpha(opacity=0); opacity:0;')
+                                .css({
+                                    display: 'block',
+                                    position: 'absoulte',
+                                    cursor: 'pointer',
+                                    float: 'left',
+                                    left: 0,
+                                    top: 0,
+                                    bottom: 0,
+                                    right: 0,
+                                    height: '100%',
+                                    width: '100%',
+                                    margin: 0,
+                                    padding: 0,
+                                    backgroundColor: 'transparent',
+                                    zIndex: '5'
+                                })
+                                .wrap('<div id="dropdownized-'+i+'" class="ui-dropdownized '+ elem.attr('class') +'" />')
+                                .removeClass()
+                                .before('<div>Dropdownized initialized</div>')
+                                .parent().css({
+                                    cursor: 'pointer',
+                                    position: 'relative',
+                                    zIndex: 1
+                                })
+                                .siblings('div').css({
+                                    top: 0,
+                                    left: 0,
+                                    bottom: 0,
+                                    right: 0,
+                                    display: 'block',
+                                    position: 'absolute',
+                                    lineHeight: elem.outerHeight()+'px'
+                                });
+        },
+        update :        function(elem) {
+                            return elem.siblings("div").html(methods.gettext(elem));
+        },
+        setvalue :      function(elem, val) {
+                            return elem.siblings("div").html(val);
+        },
+        gettext :       function(elem) {
+                            return elem.find(":selected").text();
+        },
+        getvalue :      function(elem) {
+                            return elem.find(":selected").val();
+        }
+
+    };
+
+    // Debugging
+    function debug($obj) {
+        if (window.console && window.console.log) {
+            window.console.log($obj);
+        }
+    }
+
+
     $.fn.dropdownized = function(options) {
         var opts = $.extend({}, $.fn.dropdownized.defaults, options);
 
         return this.each(function(i) {
-            // Hides select field
-            $(this).attr('style', ' -moz-opacity:0; filter:alpha(opacity=0); opacity:0;');
+            var elem = $(this);
+            if (opts.change === undefined || opts.change === null) opts.change = function(){};
 
-            // HTML
-            $(this).wrap('<div id="dropdownized-'+i+'" class="ui-dropdownized" />').before('<div>Dropdownized initialized</div>');
-            $(this).parent().css({
-                cursor: 'pointer',
-                position: 'relative',
-                zIndex: 1
-            });
+            // Check if element is select
+            if(this.tagName === "SELECT") {
+                if( elem.data('drpdwnInit') != true ) {
 
-            // Getting options and parent sizes
-            if(opts.fixed === true){
-                // Parent elements needs to have specific
-                var dropdownizerHolderHeight = $(this).parent().height();
-                var dropdownizerHolderWidth = $(this).parent().width();
+                    // Initialize script [build HTML elements]
+                    methods.init(elem, i);
+
+                    // Set default values or placeholder
+                    ( jQuery.trim(methods.getvalue(elem)) != "" && jQuery.trim(methods.gettext(elem)) ) ? methods.update(elem) : methods.setvalue(elem, opts.placeholder);
+
+                    // Gets value of selected option
+                    elem.bind('change keyup', function() {
+                        methods.update(elem);
+                        opts.change();
+                    });
+
+                    // Hover class
+                    elem.parent()
+                        .hover(
+                            function() { $(this).addClass(opts.hover);},
+                            function() { $(this).removeClass(opts.hover);}
+                        )
+                        .focusin( function() { $(this).addClass(opts.hover); })
+                        .focusout( function() { $(this).removeClass(opts.hover);});
+
+                } else {
+                    // Library is already initialized
+                    debug('Already initialized! Yay!');
+                }
             } else {
-                var dropdownizerHolderHeight = $(this).height();
-                var dropdownizerHolderWidth = $(this).width();
-
-                $('#dropdownized-'+i).width(dropdownizerHolderWidth).height(dropdownizerHolderHeight);
-                $('#dropdownized-'+i).find('div').css({
-                    top: 0,
-                    left: 0,
-                    display: 'block',
-                    position: 'absolute',
-                    lineHeight: dropdownizerHolderHeight+'px',
-                    width: dropdownizerHolderWidth,
-                    height: dropdownizerHolderHeight
-                });
-            }
-
-            normalDropDrown(this, i, dropdownizerHolderWidth, dropdownizerHolderHeight, opts);
-        });
-    };
-
-    function normalDropDrown(e, uID, eWidth, eHeight, opts){
-        // Setting select CSS properties
-        $(e).css({
-            display: 'inline',
-            position: 'absoulte',
-            cursor: 'pointer',
-            float: 'left',
-            left: 0,
-            top: 0,
-            height: eHeight,
-            width: eWidth,
-            margin: 0,
-            padding: 0,
-            backgroundColor: 'transparent',
-            zIndex: '5'
-        });
-
-        // Get initial value of dropdown
-        $(e).each( function(){
-            var dropdownValue = $(this).find(":selected").text();
-            if($.trim(dropdownValue).length != ""){
-                $(this).siblings("div").html(dropdownValue);
-            } else {
-                $(this).siblings("div").html(opts.noValue);
+                // Use it only on SELECT elements
+                debug('No luck, sigh...');
             }
         });
-
-        // Gets value of selected option
-        $(e).change(function() {
-             $(this).siblings("div").html($(this).find(":selected").text());
-        });
-
-        // Adds hover class (mostly to satisfy IE users)
-        $(e).parent().hover(
-            function() { $(this).addClass(opts.hover);},
-            function() { $(this).removeClass(opts.hover);}
-        );
     };
 
     // Default options
     $.fn.dropdownized.defaults = {
-        fixed: true,            // Sets script to be fluid or fixed
-        hover: 'hover',         // Name of the hover class
-        noValue: 'Select...'    // Default placeholder text
+        fixed: true,              // Sets script to be fluid or fixed
+        hover: 'hover',           // Name of the hover class
+        change: null,             // Callback on change event
+        placeholder: 'Select...'  // Default placeholder text
     };
 })(jQuery);
