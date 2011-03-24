@@ -89,7 +89,7 @@
                     methods.init(elem, i);
 
                     // Set default values or placeholder
-                    ( jQuery.trim(methods.getvalue(elem)) != "" && jQuery.trim(methods.gettext(elem)) ) ? methods.update(elem) : methods.setvalue(elem, opts.placeholder);
+                    ( (jQuery.trim(methods.getvalue(elem)) != "") && (jQuery.trim(methods.gettext(elem)).length > 0) ) ? methods.update(elem) : methods.setvalue(elem, opts.placeholder);
 
                     // Gets value of selected option
                     elem.bind('change keyup', function() {
