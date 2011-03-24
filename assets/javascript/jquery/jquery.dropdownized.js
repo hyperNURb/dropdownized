@@ -16,9 +16,10 @@
     var methods = {
         init    :       function(elem, i) {
                             elem.data({'drpdwnInit': true})
-                                .attr('style', ' -moz-opacity:0; filter:alpha(opacity=0); opacity:0;')
+                                .attr('style', ' -moz-opacity:0; filter:alpha(opacity=0); opacity:0; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);')
                                 .css({
                                     display: 'block',
+                                    opacity: 0,
                                     position: 'absoulte',
                                     cursor: 'pointer',
                                     float: 'left',
@@ -40,16 +41,17 @@
                                     cursor: 'pointer',
                                     position: 'relative',
                                     zIndex: 1
-                                })
-                                .siblings('div').css({
+                            });
+                            elem.siblings('div').css({
+                                    position: 'absolute',
+                                    cursor: 'pointer',
                                     top: 0,
                                     left: 0,
                                     bottom: 0,
                                     right: 0,
                                     display: 'block',
-                                    position: 'absolute',
                                     lineHeight: elem.outerHeight()+'px'
-                                });
+                            });
         },
         update :        function(elem) {
                             return elem.siblings("div").html(methods.gettext(elem));
