@@ -7,7 +7,7 @@
 * Uses the same license as jQuery, see:
 * http://jquery.org/license
 *
-* @version 0.3a
+* @version 0.3b
 */
 ;(function($) {
     var options = {
@@ -50,7 +50,8 @@
                                     bottom: 0,
                                     right: 0,
                                     display: 'block',
-                                    'line-height': elem.parent().height()+'px'
+                                    zIndex: '-1',
+                                    lineHeight: elem.parent().height()+'px'
                             });
         },
         update :        function(elem) {
@@ -109,7 +110,6 @@
                         )
                         .focusin( function() { $(this).addClass(opts.hover); })
                         .focusout( function() { $(this).removeClass(opts.hover);});
-
                 } else {
                     // Library is already initialized
                     debug('Already initialized! Yay!');
@@ -125,6 +125,7 @@
     $.fn.dropdownized.defaults = {
         fixed: true,              // Sets script to be fluid or fixed
         hover: 'hover',           // Name of the hover class
+        active: 'active',         // Name of the active class
         change: null,             // Callback on change event
         placeholder: 'Select...'  // Default placeholder text
     };
