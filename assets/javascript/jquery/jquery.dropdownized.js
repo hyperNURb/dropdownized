@@ -95,8 +95,7 @@
 
                     // Gets value of selected option
                     elem.bind('change keyup', function() {
-                        methods.update(elem);
-                        opts.change();
+                        methods['update'].apply(elem, [elem, opts.change($(this))]);
                     });
 
                     // Hover class
