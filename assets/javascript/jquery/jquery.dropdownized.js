@@ -7,7 +7,7 @@
 * Uses the same license as jQuery, see:
 * http://jquery.org/license
 *
-* @version 0.3
+* @version 0.3a
 */
 ;(function($) {
     var options = {
@@ -22,7 +22,7 @@
                                     opacity: 0,
                                     position: 'absoulte',
                                     cursor: 'pointer',
-                                    float: 'left',
+                                    'float': 'left',
                                     left: 0,
                                     top: 0,
                                     bottom: 0,
@@ -50,7 +50,7 @@
                                     bottom: 0,
                                     right: 0,
                                     display: 'block',
-                                    lineHeight: elem.outerHeight()+'px'
+                                    'line-height': elem.parent().height()+'px'
                             });
         },
         update :        function(elem) {
@@ -95,7 +95,10 @@
 
                     // Gets value of selected option
                     elem.bind('change keyup', function() {
-                        methods['update'].apply(elem, [elem, opts.change($(this))]);
+                        if ( methods.gettext(elem) == "" ||  methods.gettext(elem) == null )
+                            methods['setvalue'].apply(elem, [elem, opts.placeholder, opts.change($(this))]);
+                        else
+                            methods['update'].apply(elem, [elem, opts.change($(this))]);
                     });
 
                     // Hover class
