@@ -14,7 +14,7 @@
     };
 
     var methods = {
-        init    :       function(elem, i) {
+        _init :        function(elem, i) {
                             elem.data({'drpdwnInit': true})
                                 .attr('style', ' -moz-opacity:0; filter:alpha(opacity=0); opacity:0; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);')
                                 .css({
@@ -54,6 +54,9 @@
                                     lineHeight: elem.parent().height()+'px'
                             });
         },
+        _remove :       function(elem){
+                            return elem.data({'drpdwnInit': false}).unwrap().siblings("div").remove();
+        },
         update :        function(elem) {
                             return elem.siblings("div").html(methods.gettext(elem));
         },
@@ -66,7 +69,6 @@
         getvalue :      function(elem) {
                             return elem.find(":selected").val();
         }
-
     };
 
     // Debugging
@@ -86,10 +88,13 @@
 
             // Check if element is select
             if(this.tagName === "SELECT") {
+                if( opts.reload === true )
+                    methods._remove(elem);
+
                 if( elem.data('drpdwnInit') != true ) {
 
                     // Initialize script [build HTML elements]
-                    methods.init(elem, i);
+                    methods._init(elem, i);
 
                     // Set default values or placeholder
                     ( (jQuery.trim(methods.getvalue(elem)) != "") && (jQuery.trim(methods.gettext(elem)).length > 0) ) ? methods.update(elem) : methods.setvalue(elem, opts.placeholder);
@@ -124,6 +129,7 @@
     // Default options
     $.fn.dropdownized.defaults = {
         fixed: true,              // Sets script to be fluid or fixed
+        reload: false,            // If dynamic update is needed
         hover: 'hover',           // Name of the hover class
         active: 'active',         // Name of the active class
         change: null,             // Callback on change event
