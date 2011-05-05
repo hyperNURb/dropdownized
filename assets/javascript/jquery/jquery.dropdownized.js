@@ -68,13 +68,16 @@
         },
         getvalue :      function(elem) {
                             return elem.find(":selected").val();
+        },
+        setCalledValue : function(elem, value) {
+                            return elem.find('option[value='+value+']').attr('selected', 'selected');
         }
     };
 
     // Debugging
     function debug($obj) {
         if (window.console && window.console.log) {
-            window.console.log($obj);
+            window.console.log('[dropdownized]: '+$obj);
         }
     }
 
@@ -91,13 +94,16 @@
                 if( opts.reload === true )
                     methods._remove(elem);
 
+                if( opts.set != null )
+                    methods['update'].apply(elem, [elem, methods.setCalledValue(elem, opts.set)]);
+
                 if( elem.data('drpdwnInit') != true ) {
 
                     // Initialize script [build HTML elements]
                     methods._init(elem, i);
 
                     // Set default values or placeholder
-                    ( (jQuery.trim(methods.getvalue(elem)) != "") && (jQuery.trim(methods.gettext(elem)).length > 0) ) ? methods.update(elem) : methods.setvalue(elem, opts.placeholder);
+                    (( $.trim(methods.getvalue(elem)) != "" ) && ( $.trim(methods.gettext(elem)).length > 0 )) ? methods.update(elem) : methods.setvalue(elem, opts.placeholder);
 
                     // Gets value of selected option
                     elem.bind('change keyup', function() {
@@ -130,6 +136,7 @@
     $.fn.dropdownized.defaults = {
         fixed: true,              // Sets script to be fluid or fixed
         reload: false,            // If dynamic update is needed
+        set: null,                // Updates element value
         hover: 'hover',           // Name of the hover class
         active: 'active',         // Name of the active class
         change: null,             // Callback on change event
