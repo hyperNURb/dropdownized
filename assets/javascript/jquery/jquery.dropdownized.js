@@ -67,10 +67,10 @@
                             return elem.find(":selected").text();
         },
         getvalue :      function(elem) {
-                            return elem.find(":selected").val();
+                            return elem.val();
         },
         setCalledValue : function(elem, value) {
-                            return elem.find('option[value='+value+']').attr('selected', 'selected');
+                            return elem.val(value).attr('selected', 'selected');
         }
     };
 
