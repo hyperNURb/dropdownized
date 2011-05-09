@@ -7,7 +7,7 @@
 * Uses the same license as jQuery, see:
 * http://jquery.org/license
 *
-* @version 0.3b
+* @version 0.3c
 */
 ;(function($) {
     var options = {
@@ -90,7 +90,7 @@
             if (opts.change === undefined || opts.change === null) opts.change = function(){};
 
             // Check if element is select
-            if(this.tagName === "SELECT") {
+            if( this.length && this.tagName === "SELECT" ) {
                 if( opts.reload === true )
                     methods._remove(elem);
 
