@@ -14,7 +14,7 @@
     };
 
     var methods = {
-        _init :        function(elem, i) {
+        _init :        function(elem, i, browserSupport, elemClass, fluid) {
                             elem.data({'drpdwnInit': true})
                                 .attr('style', ' -moz-opacity:0; filter:alpha(opacity=0); opacity:0; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);')
                                 .css({
@@ -32,9 +32,9 @@
                                     margin: 0,
                                     padding: 0,
                                     backgroundColor: 'transparent',
-                                    zIndex: '5'
+                                    zIndex: 5
                                 })
-                                .wrap('<div id="dropdownized-'+i+'" class="ui-dropdownized '+ elem.attr('class') +'" />')
+                                .wrap('<div id="dropdownized-'+i+'" class="'+ browserSupport +' '+ elemClass +'" />')
                                 .removeClass()
                                 .before('<div>Dropdownized initialized</div>')
                                 .parent().css({
@@ -45,14 +45,18 @@
                             elem.siblings('div').css({
                                     position: 'absolute',
                                     cursor: 'pointer',
-                                    top: 0,
-                                    left: 0,
-                                    bottom: 0,
-                                    right: 0,
                                     display: 'block',
-                                    zIndex: '-1',
+                                    left: 0,
+                                    top: 0,
+                                    zIndex: -1,
+                                    overflow: 'hidden',
                                     lineHeight: elem.parent().height()+'px'
                             });
+
+                            if ( fluid ) {
+                                drpdwnWidth = parseInt(elem.width()) + parseInt(elem.siblings('div').css('padding-right')) +'px';
+                                $('#dropdownized-'+i).width( drpdwnWidth );
+                            }
         },
         _remove :       function(elem){
                             return elem.data({'drpdwnInit': false}).unwrap().siblings("div").remove();
@@ -84,9 +88,13 @@
 
     $.fn.dropdownized = function(options) {
         var opts = $.extend({}, $.fn.dropdownized.defaults, options);
+        // Adds fallback class to IE6
+        var browserSupport = ( $.browser.msie && $.browser.version=="6.0" ) ? "ui-dropdownized fallback" : "ui-dropdownized";
 
         return this.each(function(i) {
             var elem = $(this);
+            var elemClass = this.className.length ? this.className : "";
+
             if (opts.change === undefined || opts.change === null) opts.change = function(){};
 
             // Check if element is select
@@ -100,7 +108,7 @@
                 if( elem.data('drpdwnInit') != true ) {
 
                     // Initialize script [build HTML elements]
-                    methods._init(elem, i);
+                    methods._init(elem, i, browserSupport, elemClass, opts.fluid);
 
                     // Set default values or placeholder
                     (( $.trim(methods.getvalue(elem)) != "" ) && ( $.trim(methods.gettext(elem)).length > 0 )) ? methods.update(elem) : methods.setvalue(elem, opts.placeholder);
@@ -137,6 +145,7 @@
         fixed: true,              // Sets script to be fluid or fixed
         reload: false,            // If dynamic update is needed
         set: null,                // Updates element value
+        fluid: true,              // If true, gets dropdown auto width
         hover: 'hover',           // Name of the hover class
         active: 'active',         // Name of the active class
         change: null,             // Callback on change event

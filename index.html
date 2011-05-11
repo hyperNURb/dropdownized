@@ -7,45 +7,20 @@
     <link type="text/css" rel="stylesheet" href="assets/stylesheets/main.css" />
 </head>
 <body>
-
-<form action="">
-    <fieldset id="" class="">
-            <select class="doggy" name="bug_browser" id="bug-browser">
-                <option value=""></option>
-                <optgroup label="Firefox">
-                    <option value="Firefox 3">Firefox 3</option>
-                    <option value="Firefox 3.5">Firefox 3.5</option>
-                    <option value="Firefox 4">Firefox 4</option>
-                </optgroup>
-                <optgroup label="Safari">
-                    <option value="Safari 3">Safari 3</option>
-                    <option value="Safari 4">Safari 4</option>
-                    <option value="Safari 5">Safari 5</option>
-                </optgroup>
-                <optgroup label="Google Chrome">
-                    <option value="Google Chrome 4">Google Chrome 4</option>
-                    <option value="Google Chrome 5">Google Chrome 5</option>
-                    <option value="Google Chrome 6">Google Chrome 6</option>
-                    <option value="Google Chrome 7">Google Chrome 7</option>
-                    <option value="Google Chrome 8">Google Chrome 8</option>
-                    <option value="Google Chrome 9">Google Chrome 9</option>
-                    <option value="Google Chrome 10">Google Chrome 10</option>
-                </optgroup>
-                <optgroup label="Internet Explorer">
-                    <option value="Internet Explorer 7">Internet Explorer 7</option>
-                    <option value="Internet Explorer 8">Internet Explorer 8</option>
-                    <option value="Internet Explorer 9">Internet Explorer 9</option>
-                </optgroup>
-                <optgroup label="Opera">
-                    <option value="Opera 9">Opera 9</option>
-                    <option value="Opera 10">Opera 10</option>
-                </optgroup>
-            </select>
-    </fieldset>
-</form>
-
+    <form method="post">
+            <fieldset>
+              <p>Hi guys, my name is <input type="text" class="textInput" size="20" value="" name="name" id="name" /> and my email is <input type="text" class="textInput" size="20" value="" name="email" id="email" />.
+                I think Sprawsm is a good fit for my project, and I need your expertise in <select class="extend" name="project_type" id="project_type"><option value="0">website design</option><option value="1">website redesign</option><option value="2">UI design</option><option value="3">prototype development</option><option value="4">consultation</option><option value="5">something else</option></select>.
+                Considering the project's scope, the budget is roughly set at <select name="budget" id="budget"><option value="0">€1500 &ndash; €5000</option><option value="1">€5000 &ndash; €10,000</option><option value="2">€10,000 &ndash; €20,000</option><option value="3">€20,000 &amp; up</option></select>. 
+                By the way, this project <select name="programming" id="programming"><option value="0">will</option><option value="1">will not</option></select> require you to handle <select name="programming_type" id="programming_type"><option value="0">frontend coding (HTML/CSS/JS)</option><option value="1">CMS integration</option><option value="2">backend programming</option><option value="3">coding and/or programming</option></select>.
+              </p>
+              <p>Here's some more info about the project: <small>(required)</small>.</p>
+              <textarea cols="20" rows="8" name="more_info" id="more_info"></textarea>
+              <p class="footnote">Use this field to describe your project in detail. We're interested in desired deadlines, your competitors, references to similar projects, or any specific details that could help us analyze your request.</p>
+          </fieldset>
+    </form>
     <script src="assets/javascript/jquery-1.6.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="assets/javascript/jquery.dropdownized.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="assets/javascript/jquery.dropdownized.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $('select').dropdownized();
