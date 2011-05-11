@@ -7,7 +7,7 @@
 * Uses the same license as jQuery, see:
 * http://jquery.org/license
 *
-* @version 0.3c
+* @version 0.3d
 */
 ;(function($) {
     var options = {
